@@ -654,6 +654,11 @@ var cc =
         }
 
         cc.allasked = true;
+
+        if ($.isEmptyObject(cc.cookies)) {
+            cc.allasked = false;
+        }
+
         jQuery.each(cc.cookies, function (key, value) {
             if (cc.approved[key]) {
                 if (cc.approved[key] == "yes" || (cc.approved[key] == "always" && cc.checkedremote)) {
