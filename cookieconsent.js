@@ -22,6 +22,7 @@ var cc =
     version: '1.0.11_wr',
     jqueryversionrequired: '1.4.4',
     bannershown: false,
+    localconsentgiven: false,
     initobj: false,
     ismobile: false,
     setupcomplete: false,
@@ -853,6 +854,10 @@ var cc =
     },
 
     onlocalconsentgiven: function () {
+
+        // hai accettato i cookie. flag globale
+        cc.localconsentgiven = true;
+
         enableall = false;
         enablejustone = false;
         if (jQuery(this).hasClass('cc-button-enableall') || jQuery(this).hasClass('cc-button-enable-all')) {
