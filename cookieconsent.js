@@ -901,7 +901,7 @@ var cc =
         cc.checkapproval();
         cc.reloadifnecessary();
 
-        return false;
+        // return false;
     },
 
     showminiconsent: function () {
