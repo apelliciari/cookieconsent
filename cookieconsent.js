@@ -590,7 +590,7 @@ var cc =
             jQuery('#cc-notification').show();
         }
 
-        jQuery('#cc-approve-button-thissite').click(cc.onlocalconsentgiven);
+        // jQuery('#cc-approve-button-thissite').click(cc.onlocalconsentgiven);
         if (cc.settings.clickAnyLinkToConsent) {
             jQuery("a").filter(':not(.cc-link)').click(cc.onlocalconsentgiven);
         }
