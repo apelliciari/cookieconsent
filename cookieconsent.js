@@ -1,3 +1,5 @@
+// LOCAL
+
 /*
  Copyright 2012-2013 Silktide Ltd.
 
@@ -17,7 +19,7 @@
 
 var cc =
 {
-    version: '1.0.10',
+    version: '1.0.11_wr',
     jqueryversionrequired: '1.4.4',
     initobj: false,
     ismobile: false,
@@ -590,7 +592,7 @@ var cc =
             jQuery('#cc-notification').show();
         }
 
-        // jQuery('#cc-approve-button-thissite').click(cc.onlocalconsentgiven);
+        jQuery('#cc-approve-button-thissite').click(cc.onlocalconsentgiven);
         if (cc.settings.clickAnyLinkToConsent) {
             jQuery("a").filter(':not(.cc-link)').click(cc.onlocalconsentgiven);
         }
@@ -655,7 +657,7 @@ var cc =
 
         cc.allasked = true;
 
-        if ($.isEmptyObject(cc.cookies)) {
+        if (document.cookie.length == 0) {
             cc.allasked = false;
         }
 
