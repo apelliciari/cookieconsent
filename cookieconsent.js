@@ -21,6 +21,7 @@ var cc =
 {
     version: '1.0.11_wr',
     jqueryversionrequired: '1.4.4',
+    bannershown: false,
     initobj: false,
     ismobile: false,
     setupcomplete: false,
@@ -603,6 +604,7 @@ var cc =
             jQuery('#cc-approve-button-allsites').click(cc.onremoteconsentgiven);
         }
 
+        cc.bannershown = true;
     },
 
     timestamp: function () {
