@@ -1,4 +1,4 @@
-/*
+/* sele
  Copyright 2012-2013 Silktide Ltd.
 
  This program is free software: you can redistribute it and/or modify
@@ -78,7 +78,7 @@ var cc =
     settings: {
         refreshOnConsent: false,
         style: "dark",
-        bannerPosition: "top",
+        bannerPosition: "bottom",
         clickAnyLinkToConsent: false,
         privacyPolicy: false,
         collectStatistics: false,
@@ -96,7 +96,9 @@ var cc =
         overridewarnings: false,
         onlyshowwithineu: false,
         ipinfodbkey: false,
-        ignoreDoNotTrack: false
+        ignoreDoNotTrack: false,
+        linkInformation:'',
+        classLinkSetting:''
     },
 
     strings: {
@@ -496,7 +498,7 @@ var cc =
             '</div>' +
             '</div>';
 
-        jQuery('body').prepend(data);
+       jQuery('body').prepend(data);
         if (cc.settings.hideallsitesbutton) {
             jQuery('#cc-approve-button-allsites').hide();
         }
@@ -522,6 +524,7 @@ var cc =
             if (!value.asked) {
                 jQuery('#cc-notification-permissions ul').append('<li><input type="checkbox" checked="checked" id="cc-checkbox-' + key + '" /> <label id="cc-label-' + key + '" for="cc-checkbox-' + key + '"><strong>' + value.title + '</strong> ' + value.description + '</label></li>');
                 if (value.link) {
+
                     jQuery('#cc-label-' + key).append(' <a target="_blank" href="' + value.link + '" class="cc-learnmore-link">' + cc.strings.learnMore + '</a>');
                 }
                 if (key == "social" || key == "analytics" || key == "advertising") {
@@ -543,46 +546,46 @@ var cc =
                 }
             }
         });
-        jQuery('#cc-notification-wrapper h2').append(' - <a class="cc-link" href="#" id="cc-notification-moreinfo">' + cc.strings.seeDetails + '</a>');
+        jQuery('#cc-notification-wrapper h2').append(' - <a id="cc-notification-moreinfo" class="cc-link" href='+cc.settings.linkInformation+'>' + cc.strings.seeDetails + '</a>');
         if (cc.settings.consenttype == "implicit") {
             jQuery('#cc-notification-moreinfo').html(cc.strings.seeDetailsImplicit);
         }
-        jQuery('#cc-notification-moreinfo').click(function () {
-            if (jQuery(this).html() == cc.strings.seeDetails || jQuery(this).html() == cc.strings.seeDetailsImplicit) {
-                if (cc.settings.consenttype == 'implicit') {
-                    if (!cc.settings.hideallsitesbutton) {
-                        jQuery('#cc-approve-button-allsites').show();
-                    }
-                }
-                jQuery('#cc-approve-button-thissite').html(cc.strings.savePreference);
-                jQuery('#cc-approve-button-allsites').html(cc.strings.saveForAllSites);
-                jQuery(this).html(cc.strings.hideDetails);
-            } else {
-                jQuery.each(cc.cookies, function (key, value) {
-                    if (value.defaultstate == "off") {
-                        jQuery('#cc-checkbox-' + key).removeAttr("checked");
-                        jQuery(this).parent().addClass('cc-notification-permissions-inactive');
-                    } else {
-                        jQuery('#cc-checkbox-' + key).attr('checked', 'checked');
-                        jQuery(this).parent().removeClass('cc-notification-permissions-inactive');
+        // jQuery('#cc-notification-moreinfo').click(function () {
+        //     if (jQuery(this).html() == cc.strings.seeDetails || jQuery(this).html() == cc.strings.seeDetailsImplicit) {
+        //         if (cc.settings.consenttype == 'implicit') {
+        //             if (!cc.settings.hideallsitesbutton) {
+        //                 jQuery('#cc-approve-button-allsites').show();
+        //             }
+        //         }
+        //         jQuery('#cc-approve-button-thissite').html(cc.strings.savePreference);
+        //         jQuery('#cc-approve-button-allsites').html(cc.strings.saveForAllSites);
+        //         jQuery(this).html(cc.strings.hideDetails);
+        //     } else {
+        //         jQuery.each(cc.cookies, function (key, value) {
+        //             if (value.defaultstate == "off") {
+        //                 jQuery('#cc-checkbox-' + key).removeAttr("checked");
+        //                 jQuery(this).parent().addClass('cc-notification-permissions-inactive');
+        //             } else {
+        //                 jQuery('#cc-checkbox-' + key).attr('checked', 'checked');
+        //                 jQuery(this).parent().removeClass('cc-notification-permissions-inactive');
 
-                    }
-                });
-                if (cc.settings.consenttype == 'implicit') {
-                    jQuery(this).html(cc.strings.seeDetailsImplicit);
-                    jQuery('#cc-approve-button-thissite').html(cc.strings.allowCookiesImplicit);
-                    jQuery('#cc-approve-button-allsites').hide();
-                } else {
-                    jQuery(this).html(cc.strings.seeDetails);
-                    jQuery('#cc-approve-button-thissite').html(cc.strings.allowCookies);
-                    jQuery('#cc-approve-button-allsites').html(cc.strings.allowForAllSites);
-                }
-            }
-            jQuery('#cc-notification-logo').fadeToggle();
-            jQuery('#cc-notification-permissions').slideToggle();
-            jQuery(this).blur();
-            return false;
-        });
+        //             }
+        //         });
+        //         if (cc.settings.consenttype == 'implicit') {
+        //             jQuery(this).html(cc.strings.seeDetailsImplicit);
+        //             jQuery('#cc-approve-button-thissite').html(cc.strings.allowCookiesImplicit);
+        //             jQuery('#cc-approve-button-allsites').hide();
+        //         } else {
+        //             jQuery(this).html(cc.strings.seeDetails);
+        //             jQuery('#cc-approve-button-thissite').html(cc.strings.allowCookies);
+        //             jQuery('#cc-approve-button-allsites').html(cc.strings.allowForAllSites);
+        //         }
+        //     }
+        //     jQuery('#cc-notification-logo').fadeToggle();
+        //     jQuery('#cc-notification-permissions').slideToggle();
+        //     jQuery(this).blur();
+        //     return false;
+        // });
 
         if (!cc.ismobile) {
             if (cc.settings.bannerPosition == "cc-push") {
@@ -659,10 +662,6 @@ var cc =
 
         cc.allasked = true;
 
-        if (document.cookie.length == 0) {
-            cc.allasked = false;
-        }
-
         jQuery.each(cc.cookies, function (key, value) {
             if (cc.approved[key]) {
                 if (cc.approved[key] == "yes" || (cc.approved[key] == "always" && cc.checkedremote)) {
@@ -712,7 +711,7 @@ var cc =
                 params += "?s=1&n=1&" + cc.calculatestatsparams();
                 cc.insertscript(cc.settings.serveraddr + params);
             }
-            cc.showminiconsent();
+           // cc.showminiconsent();
         }
     },
 
@@ -969,8 +968,7 @@ var cc =
             '<p id="cc-modal-closebutton" class="cc-modal-closebutton"><a class="cc-link" href="#" title="' + cc.strings.closeWindow + '"><span>' + cc.strings.closeWindow + '</span></a></p>' +
             '<div id="cc-modal-footer-buttons">' +
 
-            '<p id="cc-modal-global"><a class="cc-link" href="#" title="' + cc.strings.changeForAllSitesLink + '"><span>' + cc.strings.changeForAllSitesLink + '</span></a></p></div>' +
-            '<a id="cc-notification-logo" class="cc-logo" target="_blank" href="http://silktide.com/cookieconsent" title="' + cc.strings.poweredBy + '"><span>' + cc.strings.poweredBy + '</span></a> ' +
+            '<p id="cc-modal-global"><a class="cc-link" href="#" title="' + cc.strings.changeForAllSitesLink + '"><span>' + cc.strings.changeForAllSitesLink + '</span></a></p></div>'  +
             '<div class="cc-clear"></div>' +
             '</div>' +
             '</div>';
@@ -1277,6 +1275,26 @@ var cc =
         jQuery.each(cc.cookies, function (key, value) {
             jQuery('.cc-button-enable-' + key).addClass('cc-link').click(cc.onlocalconsentgiven);
         });
+    },
+
+
+
+    checkcookie: function(){
+        cc.cookieset = true;
+        $.each(cc.cookies, function( key, value ) {
+                var chiave = 'cc_'+key;
+             
+                if(document.cookie.indexOf(chiave) == -1){
+                    cc.cookieset= false;   
+                }
+
+        });
+
+        if (cc.cookieset == false) 
+            return false;
+        else
+            return true;
+    
     }
 }
 
