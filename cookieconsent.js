@@ -1,5 +1,3 @@
-// LOCAL
-
 /*
  Copyright 2012-2013 Silktide Ltd.
 
@@ -301,6 +299,7 @@ var cc =
             }
         }
 
+        cc.checkapproval(); // mostriamo il banner se necessario
     },
 
     initialise: function (obj) {
@@ -1267,8 +1266,9 @@ var cc =
             cc.setupcomplete = true;
             cc.setup();
         }
+
         setTimeout(cc.afterload, 50);
-        cc.checkapproval();
+        // cc.checkapproval();  // Alle: credo che questo sia superfluo
     },
 
     afterload: function () {
