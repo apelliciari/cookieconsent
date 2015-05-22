@@ -79,7 +79,7 @@ var cc =
         refreshOnConsent: false,
         style: "dark",
         bannerPosition: "bottom",
-        clickAnyLinkToConsent: false,
+        clickAnyLinkToConsent: true,
         privacyPolicy: false,
         collectStatistics: false,
         tagPosition: 'bottom-right',
@@ -117,6 +117,7 @@ var cc =
         advertisingDefaultDescription: "Adverts will be chosen for you automatically based on your past behaviour and interests.",
         defaultDescription: "Default cookie description.",
         notificationTitle: "Your experience on this site will be improved by allowing cookies",
+        notificationDescription: "",
         notificationTitleImplicit: "We use cookies to ensure you get the best experience on our website",
         poweredBy: "Cookie Consent plugin for the EU cookie law",
         privacyPolicy: "Privacy policy",
@@ -479,9 +480,11 @@ var cc =
             jQuery('head').append('<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">');
             jQuery('body').html('').css("margin", 0);
         }
-        data = '<div id="cc-notification">' +
+        data = ' <div id="cc-notification">' +
             '<div id="cc-notification-wrapper">' +
-            '<h2><span>' + cc.strings.notificationTitle + '</span></h2>' +
+            '<h2><span>'+cc.strings.notificationTitle + 
+             ' <a id="cc-notification-moreinfo" class="cc-link" href='+cc.settings.linkInformation+'>' + cc.strings.seeDetails + '</a> '+
+            cc.strings.notificationDescription+'</span></h2>' +
             '<div id="cc-notification-permissions">' +
             '<a id="cc-notification-logo" class="cc-logo" target="_blank" href="http://silktide.com/cookieconsent" title="' + cc.strings.poweredBy + '"><span>' + cc.strings.poweredBy + '</span></a> ' +
             '</div>' +
@@ -546,7 +549,7 @@ var cc =
                 }
             }
         });
-        jQuery('#cc-notification-wrapper h2').append(' - <a id="cc-notification-moreinfo" class="cc-link" href='+cc.settings.linkInformation+'>' + cc.strings.seeDetails + '</a>');
+       // jQuery('#cc-notification-wrapper h2').append(' <a id="cc-notification-moreinfo" class="cc-link" href='+cc.settings.linkInformation+'>' + cc.strings.seeDetails + '</a>');
         if (cc.settings.consenttype == "implicit") {
             jQuery('#cc-notification-moreinfo').html(cc.strings.seeDetailsImplicit);
         }
@@ -711,7 +714,7 @@ var cc =
                 params += "?s=1&n=1&" + cc.calculatestatsparams();
                 cc.insertscript(cc.settings.serveraddr + params);
             }
-           // cc.showminiconsent();
+            //cc.showminiconsent();
         }
     },
 
@@ -921,8 +924,8 @@ var cc =
             } else {
                 jQuery('#cc-tag').hide();
             }
-            jQuery('.cc-privacy-link').click(cc.showmodal);
-            jQuery('#cc-tag-button').click(cc.showmodal);
+           // jQuery('.cc-privacy-link').click(cc.showmodal);
+            //jQuery('#cc-tag-button').click(cc.showmodal);
         }
     },
 
@@ -947,8 +950,11 @@ var cc =
 
     showmodal: function () {
         if (!cc.checkedremote && !cc.settings.disableallsites) {
+
             cc.fetchprefs();
         }
+  
+        
         jQuery(document).bind('keyup', cc.onkeyup);
         jQuery('body').prepend('<div id="cc-modal-overlay"></div>');
         jQuery(this).blur();
@@ -972,12 +978,14 @@ var cc =
             '<div class="cc-clear"></div>' +
             '</div>' +
             '</div>';
+        console.log(data);
         jQuery('body').prepend(data);
         if (cc.settings.disableallsites) {
             jQuery('#cc-modal-global').hide();
         }
         jQuery('#cc-modal').addClass(cc.settings.style).click(cc.closemodals);
         if (cc.ismobile) {
+
             jQuery('#cc-modal').addClass("cc-mobile");
         }
         cc.reloadmodal();
