@@ -14,9 +14,10 @@ CORE STYLES sele
 
 #cc-notification.cc-mobile
 {
-    position: relative !important;
+    /*position: relative !important;*/
     border-bottom: 0 !important;
     width: 100% !important;
+    margin-bottom: 100% !important;
 }
 
 #cc-modal #cc-modal-closebutton a,
@@ -725,7 +726,9 @@ DARK STYLE
 #cc-notification.cc-mobile ul.cc-notification-buttons li a,
 #cc-notification.cc-mobile ul.cc-notification-buttons li a:visited
 {
-    float: none !important;
+    /*float: none !important;*/
+    margin-top: -30% !important;
+  
 }
 #cc-notification.cc-mobile ul.cc-notification-buttons
 {

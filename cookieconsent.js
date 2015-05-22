@@ -479,6 +479,7 @@ var cc =
             cc.setupformobile();
             jQuery('head').append('<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">');
             jQuery('body').html('').css("margin", 0);
+            jQuery('body').prepend('<link rel="stylesheet" type="text/css" href="http://rawgit.com/apelliciari/cookieconsent/master/cookieconsent.css">');
         }
         data = ' <div id="cc-notification">' +
             '<div id="cc-notification-wrapper">' +
@@ -1257,6 +1258,8 @@ var cc =
             }
             jQuery('body').html('').css("margin", 0).css('width', 'auto').css("backgroundColor", bgcol).css("backgroundImage", 'none');
 
+            
+           
             jQuery('body').prepend('<link rel="stylesheet" type="text/css" href="http://assets.cookieconsent.silktide.com/current/style.min.css">');
         }
     },

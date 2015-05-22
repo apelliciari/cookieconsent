@@ -60,7 +60,7 @@ var checkcookie = function() {
             cc.showmodal();
         });
 
-        if (check == false) {
+        if (check == false && window.location.href.indexOf(cc.settings.linkInformation)== -1) {
 
             Zepto(window).one('scroll', function() {
                 //TODO: si potrebbe usare localconsentgiven insieme al controllo sui cookie però
