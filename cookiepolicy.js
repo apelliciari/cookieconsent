@@ -55,7 +55,7 @@ var checkcookie = function() {
         var funzioni = Zepto.fn.one;
         var check = cc.checkcookie();
         console.log('try check');
-        $('.' + cc.settings.classLinkSetting).live('click', function() {
+        Zepto('.' + cc.settings.classLinkSetting).on('click', function() {
             console.log('apri');
             cc.showmodal();
         });

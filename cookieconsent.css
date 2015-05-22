@@ -924,7 +924,7 @@ DARK STYLE
 #cc-notification ul.cc-notification-buttons li a,
 #cc-notification ul.cc-notification-buttons li a:visited
 {
-    margin-top: 8px !important;
+    margin-top: 50px !important;
     margin-bottom: 6px !important;
     display: block;
     padding: 8px 16px !important;
