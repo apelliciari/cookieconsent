@@ -1,7 +1,7 @@
 /*<script>*/
 
 
-var inject_gtm = function () {
+var inject_gtm = function() {
 
     console.log("inietto nuovamente il GTM..");
 
@@ -28,61 +28,59 @@ console.log("pre-iniezione listener. versione jquery: " + $.fn.jquery);
 
 checkZepto;
 
-var checkZepto = function(){
- try{
-         
-    var zepto = Zepto;
-    var funzioni = Zepto.fn.on;
+var checkZepto = function() {
+    try {
+
+        var zepto = Zepto;
+        var funzioni = Zepto.fn.on;
 
 
-    Zepto("#cc-approve-button-thissite").on("click", function() {
-        window.has_accepted_cookie_policy = true;
-        inject_gtm();
+        Zepto("#cc-approve-button-thissite").on("click", function() {
+            window.has_accepted_cookie_policy = true;
+            inject_gtm();
 
-    });
-}
+        });
+    } catch (e) {
 
-catch(e){
-
-     setTimeout(checkZepto,1000);
+        setTimeout(checkZepto, 1000);
     }
 }
 
 
-var checkcookie = function(){
-  
-    try{
-         
-         var zepto = Zepto;
-         var funzioni = Zepto.fn.one;
-         var check = cc.checkcookie();
-         console.log('try check');
-        $('.'+cc.settings.classLinkSetting).live('click', function(){  
-                console.log('apri'); 
-                cc.showmodal();
-            });
+var checkcookie = function() {
 
-        if(check == false) {
-        
-            Zepto(window).one('scroll', function(){
-                 //TODO: si potrebbe usare localconsentgiven insieme al controllo sui cookie però
-                   var check = cc.checkcookie();
-                   if(check == false){
-                        console.log("scrolled");
-                        window.has_accepted_cookie_policy = true;
-                        cc.onlocalconsentgiven();
-                        inject_gtm(); 
-                    }
+    try {
 
-            });
+        var zepto = Zepto;
+        var funzioni = Zepto.fn.one;
+        var check = cc.checkcookie();
+        console.log('try check');
+        $('.' + cc.settings.classLinkSetting).live('click', function() {
+            console.log('apri');
+            cc.showmodal();
+        });
 
-             $("a").each(function(i){
-                Zepto(this).one('click', function(){
+        if (check == false) {
+
+            Zepto(window).one('scroll', function() {
+                //TODO: si potrebbe usare localconsentgiven insieme al controllo sui cookie però
                 var check = cc.checkcookie();
-                   if(check == false &&  $(this).attr('href')!=cc.settings.linkInformation){
+                if (check == false) {
+                    console.log("scrolled");
+                    window.has_accepted_cookie_policy = true;
+                    cc.onlocalconsentgiven();
+                    inject_gtm();
+                }
+
+            });
+
+            $("a").each(function(i) {
+                Zepto(this).one('click', function() {
+                    var check = cc.checkcookie();
+                    if (check == false && $(this).attr('href') != cc.settings.linkInformation) {
                         window.has_accepted_cookie_policy = true;
                         cc.onlocalconsentgiven();
-                        inject_gtm(); 
+                        inject_gtm();
                     }
 
                 });
@@ -93,30 +91,28 @@ var checkcookie = function(){
         }
 
 
-}
-    catch(e)
-    {
-        
-        setTimeout(checkcookie,1000);
-         
-       
+    } catch (e) {
+
+        setTimeout(checkcookie, 1000);
+
+
     }
-  
-
 
 
 
 }
 
-   // andrebbe fatto controllo su presenza cookie accettati (flag unico)
-    $(document).ready(function () { 
-        console.log('prima check cookie');
-        checkcookie();
+var
 
-       
-    });
+// andrebbe fatto controllo su presenza cookie accettati (flag unico)
+    $(document).ready(function() {
+    console.log('prima check cookie');
+    checkcookie();
 
-    
+
+});
+
+
 
 console.log("iniezione del listener...");
 //</script>
