@@ -746,12 +746,15 @@ DARK STYLE
     border-bottom: 1px dotted #CCCCCC !important;
     font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
     font-size: 11pt !important;
-    width:50% !important;
+    width:25% !important;
+    height: 30%!important;
+   
+    margin-left: 72% !important;
 }
 
 #cc-notification #cc-notification-wrapper
 {
-    padding: 20px 32px 0 !important;
+    padding: 35px 32px 0 !important;
 }
 
 #cc-notification #cc-notification-permissions ul
@@ -875,10 +878,13 @@ DARK STYLE
 #cc-notification h2
 {
     font-size: 14pt;
-    letter-spacing: -0.05em;
+    letter-spacing: -0.03em;
     margin-bottom: 20px !important;
-    font-weight: 400 !important;
+    font-weight: 100 !important;
     width:100% !important;
+    text-align: justify !important;
+    line-height: 130% !important;
+    font-family: "Qlassik",arial,serif;
 }
 
 #cc-notification h2 a
@@ -894,9 +900,11 @@ DARK STYLE
 
 #cc-notification ul.cc-notification-buttons
 {
-    margin: 0 !important;
+   
     padding: 0 !important;
     list-style: none !important;
+    margin-top: 30% !important;
+    margin-right: 40% !important;
 
 }
 
