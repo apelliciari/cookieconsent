@@ -102,7 +102,6 @@ var checkcookie = function() {
 
 }
 
-var
 
 // andrebbe fatto controllo su presenza cookie accettati (flag unico)
     $(document).ready(function() {

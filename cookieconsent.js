@@ -482,7 +482,7 @@ var cc =
         }
         data = ' <div id="cc-notification">' +
             '<div id="cc-notification-wrapper">' +
-            '<h2><span>'+cc.strings.notificationTitle + 
+            '<h2><span>'+cc.strings.notificationTitle +
              ' <a id="cc-notification-moreinfo" class="cc-link" href='+cc.settings.linkInformation+'>' + cc.strings.seeDetails + '</a> '+
             cc.strings.notificationDescription+'</span></h2>' +
             '<div id="cc-notification-permissions">' +
@@ -953,8 +953,8 @@ var cc =
 
             cc.fetchprefs();
         }
-  
-        
+
+
         jQuery(document).bind('keyup', cc.onkeyup);
         jQuery('body').prepend('<div id="cc-modal-overlay"></div>');
         jQuery(this).blur();
@@ -1256,6 +1256,8 @@ var cc =
                 bgcol = '#1d1d1d'
             }
             jQuery('body').html('').css("margin", 0).css('width', 'auto').css("backgroundColor", bgcol).css("backgroundImage", 'none');
+
+            jQuery('body').prepend('<link rel="stylesheet" type="text/css" href="http://assets.cookieconsent.silktide.com/current/style.min.css">');
         }
     },
 
@@ -1291,18 +1293,18 @@ var cc =
         cc.cookieset = true;
         $.each(cc.cookies, function( key, value ) {
                 var chiave = 'cc_'+key;
-             
+
                 if(document.cookie.indexOf(chiave) == -1){
-                    cc.cookieset= false;   
+                    cc.cookieset= false;
                 }
 
         });
 
-        if (cc.cookieset == false) 
+        if (cc.cookieset == false)
             return false;
         else
             return true;
-    
+
     }
 }
 
