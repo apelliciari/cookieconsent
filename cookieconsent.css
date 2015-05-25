@@ -14,7 +14,7 @@ CORE STYLES sele
 
 #cc-notification.cc-mobile
 {
-    /*position: relative !important;*/
+    position: relative !important;
     border-bottom: 0 !important;
     width: 100% !important;
     margin-bottom: 100% !important;
@@ -304,7 +304,7 @@ LIGHT STYLE
 #cc-notification.cc-light a,
 #cc-notification.cc-light a:visited
 {
-    color: #31A8F0 !important;
+    color: #3f8737 !important;
 }
 
 #cc-notification.cc-light a:hover
@@ -322,7 +322,7 @@ LIGHT STYLE
 #cc-notification.cc-light ul.cc-notification-buttons li a,
 #cc-notification.cc-light ul.cc-notification-buttons li a:visited
 {
-    background-color: #f1d600 !important;
+    background-color: #d0d0d0 !important;
     color: #111 !important;
 }
 
@@ -382,7 +382,7 @@ LIGHT STYLE
 
 #cc-modal.cc-light #cc-modal-wrapper li strong
 {
-    color: #31a8f0 !important;
+    color: #3f8737  !important;
 }
 
 #cc-modal.cc-light #cc-modal-wrapper li span
@@ -728,7 +728,7 @@ DARK STYLE
 {
     /*float: none !important;*/
     margin-top: -30% !important;
-  
+
 }
 #cc-notification.cc-mobile ul.cc-notification-buttons
 {

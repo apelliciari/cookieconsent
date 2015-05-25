@@ -59,7 +59,7 @@ var checkcookie = function() {
             console.log('apri');
             cc.showmodal();
         });
-
+        // todo acontrollo per mobile
         if (check == false && window.location.href.indexOf(cc.settings.linkInformation)== -1) {
 
             Zepto(window).one('scroll', function() {
