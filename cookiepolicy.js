@@ -46,6 +46,52 @@ var checkZepto = function() {
     }
 }
 
+var checkScroll = function(){
+
+    Zepto(window).one('scroll', function() {
+                    //TODO: si potrebbe usare localconsentgiven insieme al controllo sui cookie però
+                    var check = cc.checkcookie();
+                    if (check == false) {
+                        console.log("scrolled");
+                        window.has_accepted_cookie_policy = true;
+                        cc.onlocalconsentgiven();
+                        inject_gtm();
+                    }
+
+                });
+}
+
+var checkClick = function () {
+         $("a").each(function(i) {
+                    Zepto(this).one('click', function() {
+                        var check = cc.checkcookie();
+                        if (check == false && $(this).attr('href') != cc.settings.linkInformation) {
+                            window.has_accepted_cookie_policy = true;
+                            cc.onlocalconsentgiven();
+                            inject_gtm();
+                        }
+
+                    });
+
+                });
+}
+
+var checkClickMobile = function () {
+         $("a").each(function(i) {
+                    Zepto(this).one('click', function() {
+                        var check = cc.checkcookie();
+                        if (check == false) {
+                            window.has_accepted_cookie_policy = true;
+                            cc.onlocalconsentgiven();
+                            inject_gtm();
+                            console.log('ho cliccato');
+                        }
+
+                    });
+
+                });
+}
+
 
 var checkcookie = function() {
 
@@ -60,33 +106,26 @@ var checkcookie = function() {
             cc.showmodal();
         });
         // todo acontrollo per mobile
-        if (check == false && window.location.href.indexOf(cc.settings.linkInformation)== -1) {
+        if (cc.ismobile == false){
+            console.log(cc.ismobile)
+            if (check == false && window.location.href.indexOf(cc.settings.linkInformation)== -1) {
 
-            Zepto(window).one('scroll', function() {
-                //TODO: si potrebbe usare localconsentgiven insieme al controllo sui cookie però
-                var check = cc.checkcookie();
-                if (check == false) {
-                    console.log("scrolled");
-                    window.has_accepted_cookie_policy = true;
-                    cc.onlocalconsentgiven();
-                    inject_gtm();
-                }
 
-            });
+                checkScroll();
+                checkClick();
 
-            $("a").each(function(i) {
-                Zepto(this).one('click', function() {
-                    var check = cc.checkcookie();
-                    if (check == false && $(this).attr('href') != cc.settings.linkInformation) {
-                        window.has_accepted_cookie_policy = true;
-                        cc.onlocalconsentgiven();
-                        inject_gtm();
-                    }
+            }
+        }
 
-                });
+        else{
 
-            });
+             if (check == false) {
+                console.log('sono mobile');
 
+                checkScroll();
+                checkClickMobile();
+
+            }
 
         }
 

@@ -744,15 +744,16 @@ DARK STYLE
 #cc-notification
 {
     background: rgb(29, 29, 29) !important;
-    background-color: rgba(29, 29, 29, 0.95) !important;
+    background-color: rgba(0, 0, 0, 1) !important;
     color: #F5F5F5 !important;
     border-bottom: 1px dotted #CCCCCC !important;
     font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
     font-size: 11pt !important;
-    width:25% !important;
-    height: 30%!important;
-   
-    margin-left: 72% !important;
+    width: 480px !important;
+    height: 320px !important;
+    margin-bottom: 10px!important;
+    margin-right: 10px!important;
+    /*margin-left: 72%;*/
 }
 
 #cc-notification #cc-notification-wrapper
@@ -933,7 +934,6 @@ DARK STYLE
     padding: 8px 16px !important;
     background-color: #d0d0d0 !important;
     color: #111 !important;
-    margin-right: 12px !important;
     text-decoration: none !important;
     font-size:12pt !important;
     font-weight: 600;
@@ -1599,4 +1599,12 @@ DARK STYLE
 #cc-modal #cc-modal-wrapper li strong
 {
     width: auto !important;
+}
+
+@media all and (max-device-width: 1024px) {
+ 
+    #cc-notification
+    {
+     left:350px;
+    }
 }
