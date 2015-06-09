@@ -701,7 +701,7 @@ DARK STYLE
 {
     position: absolute !important;
     right: 0 !important;
-    top: 5px !important;
+    top: -38px !important;
     width: 360px !important;
 }
 #cc-notification #cc-notification-wrapper
@@ -1681,10 +1681,7 @@ DARK STYLE
     width: auto!important
 }
 .cc-icon{
-  width: 65px!important;
-  height: 65px!important;
-  background-image: url(https://s3.eu-central-1.amazonaws.com/webranking-cookie-policy/info.png)!important;
-  margin: -10px 127px!important;
+ display: none!important;
 
 }
 
@@ -1694,4 +1691,34 @@ DARK STYLE
     {
      left:350px;
     }
+}
+
+@media all and (max-width: 1024px) {
+ 
+    #cc-notification
+    {
+    
+     height: 320px!important
+    }
+    #cc-notification #cc-notification-wrapper{
+        padding: 0px 32px 0 !important;
+    }
+
+    #cc-notification h2 span {
+        width:90% !important;
+    }
+    #cc-modal #cc-modal-wrapper select {
+
+    background: url(arrow_select.png) right 10px no-repeat #fff;
+    }
+   #cc-notification h2{
+        width:100% !important;
+    }
+
+    #cc-notification ul.cc-notification-buttons{
+        top: auto !important;
+        bottom: 5px !important;
+        margin-right: 0px!important;
+    }
+
 }

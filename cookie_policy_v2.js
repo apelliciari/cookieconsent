@@ -24,13 +24,23 @@ var inject_gtm = function() {
 
 checkZepto;
 
+var checksocial = function(){
+   
+    if(document.cookie.indexOf('cc_social=yes') >-1){
+
+        dataLayer.push({'event' : 'GAevent', 'eventCategory' : 'social_cookie_consent','eventLabel':'yes' });
+    }
+
+
+}
+     
+
 var checkSetupComplete = function(){
     if (cc.setupcomplete == true){
-       
         checkcookie();
         }
     else{
-        setTimeout(checkSetupComplete,1000);
+        setTimeout(checkSetupComplete,100);
     }
 };
 
@@ -42,7 +52,7 @@ var checkZepto = function() {
 
         Zepto("#cc-approve-button-thissite").on("click", function() {
             window.has_accepted_cookie_policy = true;
-            inject_gtm();
+            //inject_gtm();
 
         });
     } catch (e) {
@@ -54,15 +64,24 @@ var checkZepto = function() {
 var checkScroll = function(){
 
     Zepto(window).one('scroll', function() {
-                 
+            //controllo sulla splash se non c'è attivo scroll
+    
                     var check = cc.checkcookie();
+            
                      if (check == false){
+                       
+                        if($('#splash').css('display')=='none' || $('#splash').length == 0)
+
+                        {
                         window.has_accepted_cookie_policy = true;
                         cc.onlocalconsentgiven();
-                        //inject_gtm();
+                        //dataLayer.push({'event': 'reload on cookie consent', 'eventCategory': 'reload', 'eventAction': 'cookies accepted'});
+                       // inject_gtm();
                    }
+             }
 
                 });
+           
 }
 
 var checkClick = function () {
@@ -72,26 +91,10 @@ var checkClick = function () {
                         if (check == false && $(this).attr('href') != cc.settings.linkInformation) {
                             window.has_accepted_cookie_policy = true;
                             cc.onlocalconsentgiven();
+                            //dataLayer.push({'event': 'reload on cookie consent', 'eventCategory': 'reload', 'eventAction': 'cookies accepted'});
                             //inject_gtm();
                         }
 
-                    });
-
-                });
-}
-
-var checkClickMobile = function () {
-    
-         $("a").each(function(i) {
-                    Zepto(this).one('click', function() {
-                        var check = cc.checkcookie();
-                     
-                       if (check == false){
-                            window.has_accepted_cookie_policy = true;
-                            cc.onlocalconsentgiven();
-                           // inject_gtm();
-                        }
-                       
                     });
 
                 });
@@ -112,28 +115,19 @@ var checkcookie = function() {
             cc.showmodal();
         });
 
+        checksocial();
+
+        if (check == false && window.location.href.indexOf(cc.settings.linkInformation)== -1) {
+            checkScroll();
+            checkClick();
+
+        }
        
-        // todo acontrollo per mobile
-        if (cc.ismobile == false){
-
-            if (check == false && window.location.href.indexOf(cc.settings.linkInformation)== -1) {
-                checkScroll();
-                checkClick();
-
-            }
-        }
-
-        else{
-             
-                checkScroll();
-                checkClickMobile();
-
-        }
 
 
     } catch (e) {
 
-        setTimeout(checkcookie, 1000);
+        setTimeout(checkcookie, 100);
 
 
     }

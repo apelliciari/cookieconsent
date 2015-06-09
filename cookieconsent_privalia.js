@@ -530,13 +530,13 @@ var cc =
             jQuery('head').append('<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">');
             jQuery('body').html('').css("margin", 0);
             
-           jQuery('body').prepend('<link rel="stylesheet" type="text/css" href="https://s3.eu-central-1.amazonaws.com/webranking-cookie-policy/cookieconsent.css">');
+           jQuery('body').prepend('<link rel="stylesheet" type="text/css" href="https://s3.eu-central-1.amazonaws.com/webranking-cookie-policy/cookie_style_privalia.min.css">');
         }
         data = ' <div id="cc-notification">' +
             '<div id="cc-notification-wrapper">' +
             '<div class="cc-icon"></div>'+
             '<h2><span>'+cc.strings.notificationTitle +
-             ' <a id="cc-notification-moreinfo" class="cc-link" href="'+cc.settings.linkInformation+'">' + cc.strings.seeDetails + '</a> '+
+             ' <a id="cc-notification-moreinfo" target="_blank" class="cc-link" href="'+cc.settings.linkInformation+'">' + cc.strings.seeDetails + '</a> '+
             cc.strings.notificationDescription+'</span></h2>' +
             '<div id="cc-notification-permissions">' +
             '<a id="cc-notification-logo" class="cc-logo" target="_blank" href="http://silktide.com/cookieconsent" title="' + cc.strings.poweredBy + '"><span>' + cc.strings.poweredBy + '</span></a> ' +
@@ -933,7 +933,7 @@ var cc =
         cc.allagree = true;
         if (!enablejustone) {
             if (cc.settings.clickAnyLinkToConsent) {
-                jQuery("a").filter(':not(.cc-link)').unbind("click");
+               // jQuery("a").filter(':not(.cc-link)').unbind("click");
             }
             jQuery.each(cc.cookies, function (key, value) {
                 if (!value.approved && !value.asked) {
@@ -1016,7 +1016,7 @@ var cc =
         if (cc.ismobile) {
             cc.setupformobile();
 
-            jQuery('body').prepend('<link rel="stylesheet" type="text/css" href="https://s3.eu-central-1.amazonaws.com/webranking-cookie-policy/cookieconsent.css">');
+            jQuery('body').prepend('<link rel="stylesheet" type="text/css" href="https://s3.eu-central-1.amazonaws.com/webranking-cookie-policy/cookie_style_privalia.min.css">');
         }
         data = '<div id="cc-modal">' +
             '<div id="cc-modal-wrapper">' +

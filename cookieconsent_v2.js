@@ -493,7 +493,7 @@ var cc =
     },
 
     reloadifnecessary: function () {
-        if (cc.settings.refreshOnConsent || cc.ismobile || cc.forcereload) {
+        if (cc.settings.refreshOnConsent || cc.ismobile ||cc.forcereload) {
             setTimeout("location.reload(true);", 50);
         }
     },
@@ -524,14 +524,14 @@ var cc =
             jQuery(this).remove();
         });
         jQuery('#cc-notification').remove();
-        if (cc.ismobile) {
+        // if (cc.ismobile) {
 
-            cc.setupformobile();
-            jQuery('head').append('<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">');
-            jQuery('body').html('').css("margin", 0);
+        //     cc.setupformobile();
+        //     jQuery('head').append('<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">');
+        //     jQuery('body').html('').css("margin", 0);
             
-           jQuery('body').prepend('<link rel="stylesheet" type="text/css" href="https://s3.eu-central-1.amazonaws.com/webranking-cookie-policy/cookieconsent.css">');
-        }
+        //    jQuery('body').prepend('<link rel="stylesheet" type="text/css" href="https://s3.eu-central-1.amazonaws.com/webranking-cookie-policy/cookieconsent_smeg.css">');
+        // }
         data = ' <div id="cc-notification">' +
             '<div id="cc-notification-wrapper">' +
             '<div class="cc-icon"></div>'+
@@ -954,17 +954,17 @@ var cc =
             cc.forcereload = true;
         }
 
-        if (!cc.ismobile) {
+       // if (!cc.ismobile) {
             jQuery('#cc-notification').slideUp();
             if (cc.settings.bannerPosition == "cc-push") {
                 //detect body margin
                 jQuery('html').animate({marginTop: 0}, 400);
             }
-        }
+       // }
         cc.checkapproval();
-        cc.reloadifnecessary();
+        //cc.reloadifnecessary();
       
-        // return false;
+       //  return false;
 
     },
 
@@ -1016,7 +1016,7 @@ var cc =
         if (cc.ismobile) {
             cc.setupformobile();
 
-            jQuery('body').prepend('<link rel="stylesheet" type="text/css" href="https://s3.eu-central-1.amazonaws.com/webranking-cookie-policy/cookieconsent.css">');
+            jQuery('body').prepend('<link rel="stylesheet" type="text/css" href="https://s3.eu-central-1.amazonaws.com/webranking-cookie-policy/cookieconsent_smeg.css">');
         }
         data = '<div id="cc-modal">' +
             '<div id="cc-modal-wrapper">' +
